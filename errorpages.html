@@ -1,0 +1,15 @@
+<table class="codetable">
+    <tr>
+        <td valign="top">Error Code: </td>
+        <td valign="top"><input type="number" name="pagenumber" id="pagenumber" value="404"></td>
+    </tr>
+    <tr>
+        <td valign="top">Destination: </td>
+        <td valign="top"><input type="text" name="destination" id="dest"></td>
+    </tr>
+    <tr>
+        <td colspan="2" valign="top">
+            <a href="#" onclick="codiad.htaccess_generator.prepare_generation('ErrorDocument ', $('#pagenumber').val(), $('#dest').val());"><button>Generate</button></a>
+        </td>
+    </tr>
+</table>
