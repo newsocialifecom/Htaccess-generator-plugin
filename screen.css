@@ -1,0 +1,8 @@
+.codetable {
+    width: 100%;
+}
+.codetable tr, .codetable td {    
+    border: 0; 
+    text-align: center; 
+    vertical-align: center;
+}
