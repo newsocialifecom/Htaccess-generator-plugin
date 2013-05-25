@@ -1,0 +1,11 @@
+<table class="codetable">
+    <tr>
+        <td>Want to enable file indexing?</td>
+        <td><input type="checkbox" name="enabled" id="enabled"></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a href="#" onclick="codiad.htaccess_generator.prepare_generation('Options ', ($('#enabled').is(':checked') ? '+':'-'), 'Indexes');"><button>Generate</button></a>
+        </td>
+    </tr>
+</table>
