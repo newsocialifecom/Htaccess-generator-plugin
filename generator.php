@@ -1,5 +1,15 @@
 <?php
 include "../../common.php";
+checkSession();
+$_GET["projectpath"] = realpath($_GET["projectpath"]);
+$white = explode(",", WHITEPATHS);
+$found = false;
+foreach($white as $allowed) {
+    if(substr($_GET["projectpath"], 0, strlen($allowed)) == $allowed)
+        $found = true;
+}
+if(!$found) 
+    die();
 if(!file_exists($_GET["projectpath"]."/.htaccess"))
     file_put_contents($_GET["projectpath"]."/.htaccess", "");
 function writecode($file = "htaccess", $toWrite = "") {
