@@ -1,6 +1,8 @@
 <?php
 include "../../common.php";
 checkSession();
+if(!isset($_GET["projectpath"]))
+    die();
 $_GET["projectpath"] = realpath($_GET["projectpath"]);
 $white = explode(",", WHITEPATHS);
 $found = false;
@@ -20,7 +22,7 @@ function writecode($file = "htaccess", $toWrite = "") {
     unlink($_GET["projectpath"]."/.{$file}");
     file_put_contents($_GET["projectpath"]."/.{$file}", $code);
 }
-switch($_GET["action"]) {
+switch(isset($_GET["action"]) ? $_GET["action"] : "view") {
     case "view":
         echo file_get_contents("view.html");
     break;
