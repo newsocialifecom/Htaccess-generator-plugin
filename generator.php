@@ -1,5 +1,6 @@
 <?php
 include "../../common.php";
+include "../../config.php";
 checkSession();
 $_GET["projectpath"] = realpath($_GET["projectpath"]);
 $white = explode(",", WHITEPATHS);
@@ -9,7 +10,7 @@ foreach($white as $allowed) {
         $found = true;
 }
 if(!$found) 
-    die();
+    die("Allowed: ".WHITEPATHS."<br />Requested: ".$_GET["projectpath"]);
 if(!file_exists($_GET["projectpath"]."/.htaccess"))
     file_put_contents($_GET["projectpath"]."/.htaccess", "");
 function writecode($file = "htaccess", $toWrite = "") {
@@ -20,7 +21,7 @@ function writecode($file = "htaccess", $toWrite = "") {
     unlink($_GET["projectpath"]."/.{$file}");
     file_put_contents($_GET["projectpath"]."/.{$file}", $code);
 }
-switch(isset($_GET["action"]) ? $_GET["action"] : "view") {
+switch($_GET["action"]) {
     case "view":
         echo file_get_contents("view.html");
     break;
