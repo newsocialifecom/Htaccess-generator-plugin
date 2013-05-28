@@ -1,8 +1,6 @@
 <?php
 include "../../common.php";
 checkSession();
-if(!isset($_GET["projectpath"]))
-    die();
 $_GET["projectpath"] = realpath($_GET["projectpath"]);
 $white = explode(",", WHITEPATHS);
 $found = false;
