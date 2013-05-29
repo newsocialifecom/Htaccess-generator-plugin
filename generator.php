@@ -16,8 +16,11 @@ if(defined("WHITEPATHS")) {
     if(!$found) 
         die("Allowed: ".WHITEPATHS."<br />Requested: ".$_GET["projectpath"]);
 }
-if(!file_exists($_GET["projectpath"]."/.htaccess"))
-    file_put_contents($_GET["projectpath"]."/.htaccess", "");
+if(!file_exists($_GET["projectpath"]."/.htaccess")) {
+    $htaccess = fopen($_GET["projectpath"]."/.htaccess", "wb");
+    fwrite($htaccess, "############### Codiad .htaccess Generator ###############\n");
+    fclose($htaccess);  
+}
 function writecode($file = "htaccess", $toWrite = "") {
     if(!in_array($file, array("htaccess", "htpasswd")))
         $file = "htaccess";
