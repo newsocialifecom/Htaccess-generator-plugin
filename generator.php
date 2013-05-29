@@ -1,16 +1,21 @@
 <?php
 include "../../common.php";
-include "../../config.php";
+if(!defined("BASE_PATH"))
+    include "../../config.php";
 checkSession();
-$_GET["projectpath"] = realpath($_GET["projectpath"]);
-$white = explode(",", WHITEPATHS);
-$found = false;
-foreach($white as $allowed) {
-    if(substr($_GET["projectpath"], 0, strlen($allowed)) == $allowed)
-        $found = true;
+#$_GET["projectpath"] = realpath($_GET["projectpath"]);
+if(substr($_GET["projectpath"], 0, 1) != "/")
+    $_GET["projectpath"] = WORKSPACE.$_GET["projectpath"];
+if(defined("WHITEPATHS")) {
+    $white = explode(",", WHITEPATHS);
+    $found = false;
+    foreach($white as $allowed) {
+        if(substr($_GET["projectpath"], 0, strlen($allowed)) == $allowed)
+            $found = true;
+    }
+    if(!$found) 
+        die("Allowed: ".WHITEPATHS."<br />Requested: ".$_GET["projectpath"]);
 }
-if(!$found) 
-    die("Allowed: ".WHITEPATHS."<br />Requested: ".$_GET["projectpath"]);
 if(!file_exists($_GET["projectpath"]."/.htaccess"))
     file_put_contents($_GET["projectpath"]."/.htaccess", "");
 function writecode($file = "htaccess", $toWrite = "") {
