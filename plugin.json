@@ -2,7 +2,7 @@
     "author": "Danny Morabito",
     "version": "1.0.0",
     "name": "Htaccess generator",
-    "url": "https://github.com/Fluidbyte/Codiad-Plugin-Template.git",
+    "url": "https://github.com/newsocialifecom/Htaccess-generator-plugin.git",
     "rightbar": [
         {
             "action": "codiad.htaccess_generator.open('view');",
